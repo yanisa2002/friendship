@@ -1,3 +1,4 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include<stdio.h>
 #include<conio.h>
 #define SIZE 3
@@ -11,19 +12,24 @@ struct myfriend {
 void input(int);
 void report(void);
 void line(void);
-
+char confirm;
 int main() {
-	int i;
-	for (i = 0; i < SIZE; i++) input(i);
-	printf("--------------------------------");
-	getch();
-	report();
+	printf("Do you want to add friend  Y/N: ");
+	scanf("%c", &confirm);
+	if (confirm == 'Y' || confirm == 'y') {
+		int i;
+		for (i = 0; i < SIZE; i++) input(i);
+		printf("--------------------------------");
+		//getch();
+		//clrscr();
+		report();
+	}
 }
 
 void input(int rec) {
-	printf("Name     :"); gets_s(fr[rec].name);
-	printf("Nickname :"); gets_s(fr[rec].nickname);
-	printf("Age      :"); scanf_s("%u", &fr[rec].age);
+	printf("Name     : "); scanf(" %[^\n]", fr[rec].name);
+	printf("Nickname : "); scanf(" %[^\n]", fr[rec].nickname);
+	printf("Age      : "); scanf("%u", &fr[rec].age);
 	fflush(stdin);
 	printf("\n");
 }
